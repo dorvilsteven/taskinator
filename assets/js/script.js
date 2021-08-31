@@ -38,6 +38,10 @@ var taskFormHandler = function(event) {
     return false;
   }
   formEl.reset();
+
+  var isEdit = formEl.hasAttribute("data-task-id");
+  console.log(isEdit);
+
   // package up data as an object
   var taskDataObj = {
     name: taskNameInput,
