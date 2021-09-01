@@ -40,7 +40,8 @@ var completeEditTask = function(taskName, taskType, taskId) {
       tasks[i].type = taskType;
     }
   }
-
+  // save task to local storage
+  saveTask();
   // alert task updated
   alert('Task Updated!');
   // remove data-task-id attribute and change back the text for the form submit button
@@ -67,6 +68,8 @@ var deleteTask = function(taskId) {
 
   // reassign tasks array to the updatedTaskArray
   tasks = updatedTaskArray;
+  // save task to local storage
+  saveTask();
 }
 
 var taskFormHandler = function(event) {
@@ -133,7 +136,8 @@ var createTaskEl = function(taskDataObj) {
   taskDataObj.id = taskIdCounter;
   // push current task onto the tasks array
   tasks.push(taskDataObj);
-
+  // save task to local storage
+  saveTask();
   // increment taskIdCounter
   taskIdCounter++;
 }
@@ -224,8 +228,14 @@ var taskStatusChangeHandler = function(event) {
       tasks[i].status = statusValue;
     }
   }
+  // save task to local storage
+  saveTask();
 };
 
+var saveTask = function() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+ 
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener('click', taskButtonHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
