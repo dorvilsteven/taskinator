@@ -30,6 +30,9 @@ var completeEditTask = function(taskName, taskType, taskId) {
   taskSelected.querySelector("span.task-type").textContent = taskType;
   // alert task updated
   alert('Task Updated!');
+  // remove data-task-id attribute and change back the text for the form submit button
+  formEl.removeAttribute("data-task-id");
+  document.querySelector("#save-task").textContent = "Add Task";
 };
 
 var deleteTask = function(taskId) {
